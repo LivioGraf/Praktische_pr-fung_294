@@ -15,7 +15,7 @@ ueberschrift.innerText = "Create new Todo"
 
 const createTaskInputTitle = document.createElement("input")
 createTaskInputTitle.type = "text"
-createTaskInputTitle.placeholder = "set teh title of the task"
+createTaskInputTitle.placeholder = "Set the title of the task"
 createTaskInputTitle.id =  "createTask"
 
 const createTaskInputCompleted = document.createElement("input")
@@ -56,9 +56,6 @@ const data = fetch("http://localhost:3000/tasks")
         delteButtonFortask.innerText = "delete"
         delteButtonFortask.addEventListener("click", () => deleteTask(i.id))
 
-        //const link = document.createElement("a")
-        //link.href = "http://127.0.0.1:5500/HTML/edit.html"
-
         let editButtonFortask = document.createElement("button")
         editButtonFortask.innerText = "edit"
         editButtonFortask.addEventListener("click", () => reroute(i.id))
@@ -85,9 +82,6 @@ const data = fetch("http://localhost:3000/tasks")
     })
 })
 
-//let testTask = {title: "Testtask", completed: false}
-//createTask(testTask)
-
 
 function createTask(newTask) {
     fetch("http://localhost:3000/tasks", {
@@ -96,7 +90,7 @@ function createTask(newTask) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newTask)
-    })
+    }).then(() => window.location.reload())
 }
 
 function deleteTask(taskID) {
@@ -105,22 +99,9 @@ function deleteTask(taskID) {
         headers: {
             'Content-Type': 'application/json'
         },
-    })
-}
-
-//let updatedTask = {id: 1, title: "Livio", completed: true}
-//updateTask(updatedTask)
-
-function updateTask(updatedTask) {
-    fetch("http://localhost:3000/tasks", {
-        method:"PUT",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedTask)
-    })
+    }).then(() => window.location.reload())
 }
 
 function reroute(id) {
     window.location = "/HTML/edit.html#" + id;
-}
+}   
