@@ -1,23 +1,25 @@
-const table = document.createElement("table")
-const newTrForTh = document.createElement("tr")
-
-const ThId = document.createElement("th")
-ThId.innerText = "ID"
-
-const ThTitle = document.createElement("th")
-ThTitle.innerText = "Title"
-
-const ThCompleted = document.createElement("th")
-ThCompleted.innerText = "Completed"
-
-
-newTrForTh.appendChild(ThId)
-newTrForTh.appendChild(ThTitle)
-newTrForTh.appendChild(ThCompleted)
-table.appendChild(newTrForTh)
-document.body.appendChild(table)
-
+readTask()
 function readTask() {
+
+    const table = document.createElement("table")
+    const newTrForTh = document.createElement("tr")
+    
+    const ThId = document.createElement("th")
+    ThId.innerText = "ID"
+    
+    const ThTitle = document.createElement("th")
+    ThTitle.innerText = "Title"
+    
+    const ThCompleted = document.createElement("th")
+    ThCompleted.innerText = "Completed"
+    
+    
+    newTrForTh.appendChild(ThId)
+    newTrForTh.appendChild(ThTitle)
+    newTrForTh.appendChild(ThCompleted)
+    table.appendChild(newTrForTh)
+    document.body.appendChild(table)
+
     const data = fetch("http://localhost:3000/tasks")
     .then(function (data) {
         return data.json()
@@ -25,18 +27,23 @@ function readTask() {
     .then(function (json) {
         console.log(json)
         for (i of json) {
-            let id = document.createElement("p")
+            let newTrForContent = document.createElement("tr")
+            let id = document.createElement("td")
             id.innerText = i.id
 
-            let title = document.createElement("p")
+            let title = document.createElement("td")
             title.innerText = i.title
 
-            let completed = document.createElement("p")
+            let completed = document.createElement("td")
             completed.innerText = i.completed
 
-            document.body.appendChild(id)
-            document.body.appendChild(title)
-            document.body.appendChild(completed)
+            newTrForContent.appendChild(id)
+            newTrForContent.appendChild(title)
+            newTrForContent.appendChild(completed)
+
+            table.appendChild(newTrForContent)
+
+            document.body.appendChild(table)
         }
     })
 }
