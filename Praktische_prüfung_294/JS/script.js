@@ -51,10 +51,11 @@ function createTask(newTask) {
 }
 
 function deleteTask(taskID) {
-    fetch(`http://localhost:3000/tasks/${taskID}`, {
+    fetch(`http://localhost:3000/task/${taskID}`, {
         method:"DELETE",
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(taskID)
     })
 }
