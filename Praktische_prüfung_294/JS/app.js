@@ -16,7 +16,7 @@ ueberschrift.innerText = "Create new Todo"
 const createTaskInputTitle = document.createElement("input")
 createTaskInputTitle.type = "text"
 createTaskInputTitle.placeholder = "Set the title of the task"
-createTaskInputTitle.id =  "createTask"
+createTaskInputTitle.id = "createTask"
 
 const createTaskInputCompleted = document.createElement("input")
 createTaskInputCompleted.type = "text"
@@ -30,7 +30,7 @@ newTaskButton.addEventListener("click", () => {
     const newTaskTitle = document.getElementById("createTask").value
     const compled = document.getElementById("compled").value
 
-    const newTaskObject = {title: newTaskTitle, compled: compled}
+    const newTaskObject = { title: newTaskTitle, compled: compled }
 
     createTask(newTaskObject)
 })
@@ -46,41 +46,41 @@ document.body.appendChild(createTaskInputCompleted)
 document.body.appendChild(newTaskButton)
 
 const data = fetch("http://localhost:3000/tasks")
-.then(function (data) {
-    return data.json()
-})
-.then(function (json) {
-    console.log(json)
-    json.forEach(function(i) {
-        let delteButtonFortask = document.createElement("button")
-        delteButtonFortask.innerText = "delete"
-        delteButtonFortask.addEventListener("click", () => deleteTask(i.id))
-
-        let editButtonFortask = document.createElement("button")
-        editButtonFortask.innerText = "edit"
-        editButtonFortask.addEventListener("click", () => reroute(i.id))
-
-        let newTrForContent = document.createElement("tr")
-        let id = document.createElement("td")
-        id.innerText = i.id
-
-        let title = document.createElement("td")
-        title.innerText = i.title
-
-        let completed = document.createElement("td")
-        completed.innerText = i.completed
-
-        newTrForContent.appendChild(id)
-        newTrForContent.appendChild(title)
-        newTrForContent.appendChild(completed)
-        newTrForContent.appendChild(delteButtonFortask)
-        newTrForContent.appendChild(editButtonFortask)
-
-        table.appendChild(newTrForContent)
-
-        document.body.appendChild(table)
+    .then(function (data) {
+        return data.json()
     })
-})
+    .then(function (json) {
+        console.log(json)
+        json.forEach(function (i) {
+            let delteButtonFortask = document.createElement("button")
+            delteButtonFortask.innerText = "delete"
+            delteButtonFortask.addEventListener("click", () => deleteTask(i.id))
+
+            let editButtonFortask = document.createElement("button")
+            editButtonFortask.innerText = "edit"
+            editButtonFortask.addEventListener("click", () => reroute(i.id))
+
+            let newTrForContent = document.createElement("tr")
+            let id = document.createElement("td")
+            id.innerText = i.id
+
+            let title = document.createElement("td")
+            title.innerText = i.title
+
+            let completed = document.createElement("td")
+            completed.innerText = i.completed
+
+            newTrForContent.appendChild(id)
+            newTrForContent.appendChild(title)
+            newTrForContent.appendChild(completed)
+            newTrForContent.appendChild(delteButtonFortask)
+            newTrForContent.appendChild(editButtonFortask)
+
+            table.appendChild(newTrForContent)
+
+            document.body.appendChild(table)
+        })
+    })
 
 
 function createTask(newTask) {
@@ -95,7 +95,7 @@ function createTask(newTask) {
 
 function deleteTask(taskID) {
     fetch(`http://localhost:3000/task/${taskID}`, {
-        method:"DELETE",
+        method: "DELETE",
         headers: {
             'Content-Type': 'application/json'
         },
